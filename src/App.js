@@ -18,15 +18,21 @@ const list = [
       objectID: 1,
   }
 ];
-
+function isSearched(searchTerm){
+  return function(item){
+    return item.title.toLowerCase().includes(searchTerm.toLowerCase() )
+  }
+}
 class App extends Component {
 
   constructor(props){
     super(props)
     this.state = {
-      list: list
+      list: list,
+      searchTerm: ''
     }
     this.onDismiss = this.onDismiss.bind(this)
+    this.onSearchChange = this.onSearchChange.bind(this)
   }
   onDismiss(id){
     const updatedList = this.state.list.filter(function isNotId(item){
@@ -36,10 +42,17 @@ class App extends Component {
       list: updatedList
     })
   }
+  onSearchChange(event){
+    console.log(event.target.value)
+    this.setState({
+      searchTerm: event.target.value
+    })
+  }
   render() {
     return (
       <div className="App">
-        {this.state.list.map((item) => 
+        <input type='text' onChange={this.onSearchChange}/>
+        {this.state.list.filter(isSearched(this.state.searchTerm)).map((item) => 
             <div key={item.objectID}>
               <span>
                 <a href={item.url}>{item.title}</a>
