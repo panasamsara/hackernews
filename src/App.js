@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Search from './Search.js'
+import Button from './Button.js'
 
 const list = [
   {
@@ -74,14 +75,10 @@ class Table extends Component{
             </span>
             <span>{item.author}</span>
             <span>{item.num_comments}</span>
-            <span>{item.points}</span>
+            <span>{item.points} </span>
             <span>
-              <button
-                onClick={() => onDismiss(item.objectID)}
-                type="button"
-              > Dismiss
-                    </button>
-                  </span>
+                <Button onClick={ ()=>onDismiss(item.objectID) }>删除</Button>
+            </span>
         </div> )}
       </div>
     )
