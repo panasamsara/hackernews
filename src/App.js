@@ -53,7 +53,7 @@ class App extends Component {
    const {searchTerm, list} = this.state
     return (
       <div className="App">
-       <Search value={searchTerm} onChange={this.onSearchChange}/>
+          <Search value={searchTerm} onChange={this.onSearchChange}>测试组合组件</Search>
        <Table list={list} pattern={searchTerm} onDismiss={this.onDismiss}/>
       </div>
     );
