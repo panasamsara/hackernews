@@ -65,8 +65,12 @@ class App extends Component {
           <div className="interactions">
               <Search value={searchTerm} onChange={this.onSearchChange}>搜索</Search>
           </div>
-
-          <Table list={result.hits} pattern={searchTerm} onDismiss={this.onDismiss}/>
+          {
+            result 
+            ? <Table list={result.hits} pattern={searchTerm} onDismiss={this.onDismiss}/>
+            : null
+          }
+          
       </div>
     );
   }
