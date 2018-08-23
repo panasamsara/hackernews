@@ -26,6 +26,7 @@ class App extends Component {
     this.setSearchTopStories = this.setSearchTopStories.bind(this); 
     this.fetchSearchTopStories = this.fetchSearchTopStories.bind(this);
     this.onDismiss = this.onDismiss.bind(this)
+    this.onSearchSubmit = this.onSearchSubmit.bind(this)
     this.onSearchChange = this.onSearchChange.bind(this)
   }
   setSearchTopStories(result) {
@@ -51,6 +52,12 @@ class App extends Component {
       result: Object.assign({}, this.state.result, {hits: updateHits})
     })
   }
+  onSearchSubmit(event){
+    const {searchTerm} = this.props
+    this.fetchSearchTopStories(searchTerm)
+    event.preventDefault();
+    
+  }
   onSearchChange(event){
     console.log(event.target.value)
     this.setState({
@@ -63,7 +70,11 @@ class App extends Component {
     return (
       <div className="page">
           <div className="interactions">
-              <Search value={searchTerm} onChange={this.onSearchChange}>搜索</Search>
+              <Search 
+                value={searchTerm} 
+                onChange={this.onSearchChange}
+                onSubmit={this.onSearchSubmit}
+                >搜索</Search>
           </div>
           {
             result 
